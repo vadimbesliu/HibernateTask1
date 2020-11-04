@@ -2,14 +2,17 @@ package entities;
 
 import entities.enums.StatusTypes;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 public class Task {
     @Id

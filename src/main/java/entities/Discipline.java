@@ -1,15 +1,15 @@
 package entities;
 
 import entities.enums.DisciplineTypes;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
+@Setter
+@Getter
+@ToString
 @NoArgsConstructor
 public class Discipline {
     @Id
@@ -18,11 +18,11 @@ public class Discipline {
     @Enumerated(EnumType.STRING)
     private DisciplineTypes Name;
 
-    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @OneToMany(mappedBy = "discipline", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<User> users;
 
-    @EqualsAndHashCode.Exclude
+
     @OneToOne
     private User headOfDiscipline;
 

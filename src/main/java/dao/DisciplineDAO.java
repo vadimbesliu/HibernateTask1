@@ -39,7 +39,7 @@ public class DisciplineDAO extends SessionUtil implements GenericDAO <Discipline
     public List<Discipline> listAllDisciplines(int numberOfUsers){
         openTransactionSession();
         Session session=getSession();
-        Query query =session.createQuery("from Discipline d  where d.users.size <= :a");
+        Query query =session.createQuery("from Discipline d  where size(d.users) <= :a");
         query.setParameter("a",numberOfUsers);
         List<Discipline> allDisciplines= query.list();
         return allDisciplines;

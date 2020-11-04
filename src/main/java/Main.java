@@ -22,30 +22,30 @@ public class Main {
         TaskDAO taskDAO = new TaskDAO();
         DisciplineDAO disciplineDAO = new DisciplineDAO();
         UserDAO userDAO = new UserDAO();
-        List <Discipline> disciplineList=addDiscipline();
-        Set<Role>roleSet=addRole();
-        List<Task> taskList=addTask();
-        List<User>userListAM=addAMUsers(taskList,roleSet.stream().filter(t->t.getName().equals("Intern")).collect(Collectors.toSet()), disciplineList.get(1));
-        List<User>userListDEV=addDEVUsers(taskList,roleSet.stream().filter(t->t.getName().equals("Intern")).collect(Collectors.toSet()),disciplineList.get(0));
-        List<User>userListTEST=addTESTUsers(taskList,roleSet.stream().filter(t->t.getName().equals("Intern")).collect(Collectors.toSet()),disciplineList.get(2));
+        List<Discipline> disciplineList = addDiscipline();
+        Set<Role> roleSet = addRole();
+        List<Task> taskList = addTask();
+        List<User> userListAM = addAMUsers(taskList, roleSet.stream().filter(t -> t.getName().equals("Intern")).collect(Collectors.toSet()), disciplineList.get(1));
+        List<User> userListDEV = addDEVUsers(taskList, roleSet.stream().filter(t -> t.getName().equals("Intern")).collect(Collectors.toSet()), disciplineList.get(0));
+        List<User> userListTEST = addTESTUsers(taskList, roleSet.stream().filter(t -> t.getName().equals("Intern")).collect(Collectors.toSet()), disciplineList.get(2));
 
-        for(Role role : roleSet) {
+        for (Role role : roleSet) {
             roleDAO.addToDatabase(role);
         }
-        for(Task task : taskList){
+        for (Task task : taskList) {
             taskDAO.addToDatabase(task);
         }
-        for(Discipline discipline : disciplineList){
+        for (Discipline discipline : disciplineList) {
             disciplineDAO.addToDatabase(discipline);
         }
 
-        for(User user : userListAM){
+        for (User user : userListAM) {
             userDAO.addToDatabase(user);
         }
-        for(User user : userListDEV){
+        for (User user : userListDEV) {
             userDAO.addToDatabase(user);
         }
-        for(User user : userListTEST){
+        for (User user : userListTEST) {
             userDAO.addToDatabase(user);
         }
         disciplineList.get(1).setHeadOfDiscipline(userListAM.get(0));
@@ -65,24 +65,23 @@ public class Main {
         userDAO.delete(userListDEV.get(1));
 
 
-
-
-
     }
 
-    public static List<User> addAMUsers(List<Task> taskList, Set<Role> roleSet,Discipline discipline) {
+    public static List<User> addAMUsers(List<Task> taskList, Set<Role> roleSet, Discipline discipline) {
         return Arrays.asList(new User("Vadim", "Besliu", "asd@gmail.com",
-                "vbesliu", new Date(2020, 12, 11), true, roleSet, taskList, discipline),
+                        "vbesliu", new Date(2020, 12, 11), true, roleSet, taskList, discipline),
                 new User("Sorin", "Gorea", "sgorea@gmail.com", "sgorea", new Date(2020, 12,
                         10), true, roleSet, taskList, discipline));
     }
-    public static List<User> addDEVUsers(List<Task> taskList, Set<Role> roleSet,Discipline discipline) {
+
+    public static List<User> addDEVUsers(List<Task> taskList, Set<Role> roleSet, Discipline discipline) {
         return Arrays.asList(new User("Dan", "Velescu", "dvelescu@gmail.com",
                         "dvelescu", new Date(2020, 12, 11), true, roleSet, taskList, discipline),
                 new User("Nicolae", "Semitar", "nsemitar@gmail.com", "nsemitar", new Date(2020, 12, 10),
                         true, roleSet, taskList, discipline));
     }
-    public static List<User> addTESTUsers(List<Task> taskList, Set<Role> roleSet,Discipline discipline) {
+
+    public static List<User> addTESTUsers(List<Task> taskList, Set<Role> roleSet, Discipline discipline) {
         return Arrays.asList(new User("Dmitrii", "Sprinceac", "dsprinceac@gmail.com", "dsprinceac",
                         new Date(2020, 12, 11), true, roleSet, taskList, discipline),
                 new User("Valeria", "Jucov", "vjucov@gmail.com", "vjucov",
@@ -91,8 +90,6 @@ public class Main {
                         new Date(2020, 12, 10),
                         true, roleSet, taskList, discipline));
     }
-
-
 
     public static Set<Role> addRole() {
         Set<Role> roleSet = new HashSet<>();

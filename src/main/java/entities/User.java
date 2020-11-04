@@ -1,9 +1,7 @@
 package entities;
 
 import entities.enums.DisciplineTypes;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLUpdate;
 
@@ -15,10 +13,13 @@ import java.util.Set;
 
 @Table(name = "t_user")
 @Entity
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
+@ToString
 @SQLDelete(sql = "UPDATE t_user SET name='DELETED',lastName = 'DELETED',email='DELETED', userName = 'DELETED',enabled = false WHERE id =?")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
